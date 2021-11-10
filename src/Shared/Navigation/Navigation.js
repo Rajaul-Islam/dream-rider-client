@@ -23,14 +23,16 @@ const Navigation = () => {
                         <Nav.Link className='text-white' as={NavLink} to='/home'>Home</Nav.Link>
                         <Nav.Link className='text-white' as={NavLink} to='/bikes'>Bikes</Nav.Link>
                         <Nav.Link className='text-white' as={NavLink} to='/about'>About</Nav.Link>
-                       
-                        <Nav.Link className='text-white' as={NavLink} to='/dashboard'>Dashboard</Nav.Link>
+
+
+
 
                         <>
                             {
                                 user.displayName ?
                                     <>
                                         <Nav.Link className='text-white' onClick={logout}> hi! {user.displayName} {" "}Logout</Nav.Link>
+                                        <Nav.Link className='text-white' as={NavLink} to='/dashboard'>Dashboard</Nav.Link>
 
 
 
