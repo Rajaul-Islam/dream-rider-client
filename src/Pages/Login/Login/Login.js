@@ -9,7 +9,7 @@ const Login = () => {
     const [loginData, setLoginData] = useState('');
     const history=useHistory();
     const location =useLocation();
-    const { user, isLoading, error, loginUser } = useAuth();
+    const { user, isLoading, error, loginUser,signInWithGoogle } = useAuth();
     console.log(loginData);
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -82,6 +82,8 @@ const Login = () => {
 
             </p>
             <Nav.Link className='text-dark' as={NavLink} to='/register'>Already have an account? please login</Nav.Link>
+            <p>SignUp with google</p>
+            <Button onClick={() => signInWithGoogle(location, history)}>Google SignIN</Button>
             {user?.email && <Alert variant='success' className='w-25 mx-auto ' >
                 Login successfully
             </Alert>}

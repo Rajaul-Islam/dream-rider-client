@@ -1,12 +1,14 @@
 
 import React, { useState } from 'react';
-import { Alert, Nav, Spinner,Button } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Alert, Nav, Spinner, Button } from 'react-bootstrap';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hook/useAuth';
 import Navigation from '../../../Shared/Navigation/Navigation';
 
 const Register = () => {
-    const { user, registerUser, isLoading, error } = useAuth()
+    const { user, registerUser, isLoading, error, signInWithGoogle } = useAuth()
+    const history = useHistory();
+    const location = useLocation();
     console.log(user);
     const [loginData, setLoginData] = useState('');
     console.log(loginData);
@@ -96,6 +98,9 @@ const Register = () => {
 
             </p>
             <Nav.Link className='text-dark' as={NavLink} to='/login'>Already have an account? please login</Nav.Link>
+            <p>SignUp with google</p>
+            <Button onClick={() => signInWithGoogle(location, history)}>Google SignIN</Button>
+
 
             {user?.email && <Alert variant='success' className='w-25 mx-auto ' >
                 User Register successfully
