@@ -15,6 +15,7 @@ import PrivateRoute from './Pages/Login/Login/PrivateRoute/PrivateRoute';
 import AllServices from './Pages/AllServices/AllServices';
 import Product from './Pages/Home/Home/Product/Product';
 import ProcessOrder from './Pages/ProcessOrder/ProcessOrder';
+import Dashboard from './Dashboard/Dashboard';
 
 
 
@@ -45,7 +46,7 @@ function App() {
               <Register></Register>
             </Route>
             <Route path="/dashboard">
-              <DashBoardHome></DashBoardHome>
+              <Dashboard></Dashboard>
             </Route>
             <PrivateRoute path="/processorder/:id">
               <ProcessOrder></ProcessOrder>
