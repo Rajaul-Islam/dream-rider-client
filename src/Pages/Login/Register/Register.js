@@ -27,7 +27,7 @@ const Register = () => {
         if (loginData.password !== loginData.password2) {
             alert('password dis not match')
         }
-        registerUser(loginData.email, loginData.password, loginData.name)
+        registerUser(loginData.email, loginData.password, loginData.name, location, history)
         e.preventDefault();
     }
     return (

@@ -10,13 +10,18 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(true)
+    const [admin, setAdmin] = useState(false);
+
+    console.log(admin);
 
 
-    const registerUser = (email, password, name) => {
+
+    const registerUser = (email, password, name, location, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
                 const newUser = { email, displayName: name }
                 setUser(newUser)
                 saveUser(email, name, 'POST');
@@ -104,6 +109,15 @@ const useFirebase = () => {
     }, [])
 
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/uniqueUser/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
+
+
+
 
     const logout = () => {
         setIsLoading(true)
@@ -134,6 +148,7 @@ const useFirebase = () => {
     }
     return {
         user,
+        admin,
         registerUser,
         loginUser,
         signInWithGoogle,

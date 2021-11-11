@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Alert, Button, Form } from 'react-bootstrap';
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('')
+    const [success, setSuccess] = useState(false)
     console.log(email);
     const handleOnBlur = e => {
 
@@ -20,7 +21,12 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.modifiedCount){
+              
+                     setSuccess(true);
+                }
+                
+                   
             })
 
         e.preventDefault()
@@ -42,6 +48,11 @@ const MakeAdmin = () => {
                 >
                 </input>
             </form>
+            {
+                success && <Alert variant='success' className='w-25 mx-auto ' >
+                    Admin added successfully
+                </Alert>}
+
         </div>
     );
 };

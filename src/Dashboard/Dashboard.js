@@ -1,14 +1,15 @@
-import React from 'react';
+
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+
 import {
-    BrowserRouter as Router,
+   
     Switch,
     Route,
     Link,
-    useParams,
+  
     useRouteMatch
 } from "react-router-dom";
+import useAuth from '../Hook/useAuth';
 import AddProduct from './AddProduct/AddProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrder from './ManageAllOrder/ManageAllOrder';
@@ -19,6 +20,8 @@ import Review from './Reviwe/Review';
 
 
 const Dashboard = () => {
+    const { admin } = useAuth()
+    console.log(admin);
 
     let { path, url } = useRouteMatch();
 
@@ -48,14 +51,32 @@ const Dashboard = () => {
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Nav.Link as={Link} to='/home'>Home</Nav.Link>
                                 <Nav.Link as={Link} to={`${url}`}>Dashboard</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/pay`}>Pay</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/myOrder`}>My Order</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/review`}>Review</Nav.Link>
+                                {
+                                    admin ? <>
 
-                                <Nav.Link as={Link} to={`${url}/manageOrder`}>Manage All Order</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/addProduct`}>Add A Product</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/makeAdmin`}>Make Admin</Nav.Link>
-                                <Nav.Link as={Link} to={`${url}/manageProduct`}>Manage Product</Nav.Link>
+                                        <Nav.Link as={Link} to={`${url}/manageOrder`}>Manage All Order</Nav.Link>
+                                        <Nav.Link as={Link} to={`${url}/addProduct`}>Add A Product</Nav.Link>
+                                        <Nav.Link as={Link} to={`${url}/makeAdmin`}>Make Admin</Nav.Link>
+                                        <Nav.Link as={Link} to={`${url}/manageProduct`}>Manage Product</Nav.Link>
+
+
+                                    </>
+
+                                        :
+                                        <>
+
+                                            <Nav.Link as={Link} to={`${url}/pay`}>Pay</Nav.Link>
+                                            <Nav.Link as={Link} to={`${url}/myOrder`}>My Order</Nav.Link>
+                                            <Nav.Link as={Link} to={`${url}/review`}>Review</Nav.Link>
+
+
+
+
+
+                                        </>
+                                }
+
+
 
 
                             </Nav>
