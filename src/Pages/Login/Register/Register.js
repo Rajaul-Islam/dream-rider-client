@@ -32,7 +32,7 @@ const Register = () => {
     }
     return (
         <div>
-            {/* <Navigation></Navigation> */}
+            <Navigation></Navigation>
             {isLoading && <>
                 <Button variant="primary" disabled>
                     <Spinner

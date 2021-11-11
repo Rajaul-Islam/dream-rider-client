@@ -1,10 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import useAuth from '../../Hook/useAuth';
 
 const MyOrder = () => {
+    const [orders, setOrders] = useState([]);
+    const { user } = useAuth()
+    useEffect(() => {
+        const url = `http://localhost:5000/orders?email=${user.email}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setOrders(data))
+    }, [user.email])
+
+    const deleteOrder = id => {
+        const process = window.confirm("Are you sure you want to cancel this order")
+        if (process) {
+
+            const uri = `http://localhost:5000/orders/${id}`
+            fetch(uri, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        alert('deleted successFully');
+                        const remainingUsers = orders.filter(user => user._id !== id);
+                        console.log(remainingUsers)
+                        setOrders(remainingUsers);
+                    }
+                })
+        }
+
+    }
     return (
-        <div>
-            <h1>This is my order</h1>
-        </div>
+        <Container>
+            <Row xs={1} md={3} className="g-4">
+
+                {
+                    orders.map(order =>
+                        <Col key={order._id}>
+
+                            <Card>
+                                <Card.Header>{order.userName}</Card.Header>
+                                <Card.Body>
+                                    <Card.Title>{order.serviceName}</Card.Title>
+                                    <Card.Text>
+                                        {order.userEmail}
+                                    </Card.Text>
+                                    <Button onClick={() => deleteOrder(order._id)} variant="primary">Cancel Order</Button>
+                                </Card.Body>
+                            </Card>
+
+
+                        </Col>
+
+
+
+
+
+                    )
+                }
+            </Row >
+        </Container>
     );
 };
 

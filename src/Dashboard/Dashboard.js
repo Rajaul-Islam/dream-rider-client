@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import useAuth from '../Hook/useAuth';
 import AddProduct from './AddProduct/AddProduct';
+import DashBoardHome from './DashBoardHome/DashBoardHome';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrder from './ManageAllOrder/ManageAllOrder';
 import ManageProduct from './ManageProduct/ManageProduct';
@@ -30,7 +31,7 @@ const Dashboard = () => {
         <div>
             <Navbar bg="light" expand={false}>
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+                    <Navbar.Brand href="#">Dashboard</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -38,7 +39,7 @@ const Dashboard = () => {
                         placement="start"
                     >
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
+                            <Offcanvas.Title id="offcanvasNavbarLabel">Dashboard</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
 
@@ -90,7 +91,7 @@ const Dashboard = () => {
 
             <Switch>
                 <Route exact path={path}>
-
+                    <DashBoardHome></DashBoardHome>
                 </Route>
                 <Route path={`${path}/pay`}>
                     <Pay></Pay>
