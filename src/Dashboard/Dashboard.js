@@ -2,11 +2,11 @@
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
 
 import {
-   
+
     Switch,
     Route,
     Link,
-  
+
     useRouteMatch
 } from "react-router-dom";
 import useAuth from '../Hook/useAuth';
@@ -20,7 +20,7 @@ import Review from './Reviwe/Review';
 
 
 const Dashboard = () => {
-    const { admin } = useAuth()
+    const { admin, logout } = useAuth()
     console.log(admin);
 
     let { path, url } = useRouteMatch();
@@ -74,8 +74,9 @@ const Dashboard = () => {
 
 
                                         </>
-                                }
 
+                                }
+                                <Nav.Link onClick={logout} >LogOut</Nav.Link>
 
 
 
