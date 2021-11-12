@@ -15,19 +15,19 @@ const AddProduct = () => {
         const img = imgRef.current.value;
         const price = priceRef.current.value;
 
-        const newProduct = { userName: user.displayName, userEmail: user.email, name, img, price, description};
+        const newProduct = { userName: user.displayName, userEmail: user.email, name, img, price, description };
 
-        fetch('http://localhost:5000/bikes',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:5000/bikes', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(newProduct)
+            body: JSON.stringify(newProduct)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data);
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
 
         console.log(newProduct);
 
@@ -47,7 +47,7 @@ const AddProduct = () => {
                     value={user.email} placeholder="User email" />
                 <br />
                 <Form.Control type="text" ref={nameRef} placeholder="Product Name" />
-                <br /> 
+                <br />
                 <Form.Control size="lg" ref={descriptionRef} type='text' as="textarea" placeholder="Description" />
                 <br />
                 <Form.Control type="text" ref={priceRef} placeholder="Price" />

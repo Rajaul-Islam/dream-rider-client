@@ -47,6 +47,8 @@ const MyOrder = () => {
                                     <Card.Title>{order.serviceName}</Card.Title>
                                     <Card.Text>
                                         {order.userEmail}
+                                        <br></br>
+                                        {order.orderStatus}
                                     </Card.Text>
                                     <Button onClick={() => deleteOrder(order._id)} variant="primary">Cancel Order</Button>
                                 </Card.Body>
