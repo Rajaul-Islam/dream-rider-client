@@ -17,7 +17,7 @@ const AddProduct = () => {
 
         const newProduct = { userName: user.displayName, userEmail: user.email, name, img, price, description };
 
-        fetch('http://localhost:5000/bikes', {
+        fetch('https://dry-fortress-62945.herokuapp.com/bikes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -28,7 +28,7 @@ const AddProduct = () => {
             .then(data => {
                 if (data.insertedId) {
                     alert('Product Added SuccessFully')
-                  
+
                     e.target.reset();
                 }
             })

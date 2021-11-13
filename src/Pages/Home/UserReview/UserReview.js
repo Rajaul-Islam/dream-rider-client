@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import Rating from 'react-rating';
+import './UserReview.css'
 
 const UserReview = () => {
     const [reviews, setReview] = useState([]);
     console.log(reviews);
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://dry-fortress-62945.herokuapp.com/review')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -13,35 +15,55 @@ const UserReview = () => {
             })
     }, [])
     return (
-        <Container>
-            <h1>User Review</h1>
-            <Row xs={1} md={3} className="g-4">
+        <div className='py-5' style={{ backgroundColor: '#e9e7f5' }}>
+            <Container className='' >
+                <div className='mb-4'>
+                    <h1 >Review</h1>
 
-                {
-                    reviews.map(review =>
-                        <Col key={review._id}>
+                    <Rating
+                        initialRating='4.5'
+                        emptySymbol="far fa-star icon-color"
+                        fullSymbol="fas fa-star icon-color"
+                        readonly></Rating><br />
+                    <span>Overall Rating</span>
+                </div>
+                <Row xs={1} md={3} className="g-4">
 
-                            <Card border="secondary" >
-                                <Card.Header>{review?.rating}</Card.Header>
-                                <Card.Body>
-                                    <Card.Title>{review.reviewerName}</Card.Title>
-                                    <Card.Text>
-                                        {review.review}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
+                    {
+                        reviews.map(review =>
+                            <Col key={review._id}>
 
+                                <Card className='b-0 shadow' >
 
-                        </Col>
-
-
+                                    <Rating
+                                        initialRating={review?.rating}
+                                        emptySymbol="far fa-star icon-color"
+                                        fullSymbol="fas fa-star icon-color"
+                                        readonly></Rating>
 
 
 
-                    )
-                }
-            </Row >
-        </Container>
+                                    <Card.Body>
+                                        <Card.Title>{review.reviewerName}</Card.Title>
+                                        <Card.Text>
+                                            {review.review}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+
+
+                            </Col>
+
+
+
+
+
+                        )
+                    }
+                </Row >
+            </Container >
+        </div>
+
     );
 };
 

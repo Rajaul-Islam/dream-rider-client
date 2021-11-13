@@ -4,7 +4,7 @@ import { Card, Col, Row, Button, Container } from 'react-bootstrap';
 const ManageProduct = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/bikes')
+        fetch('https://dry-fortress-62945.herokuapp.com/bikes')
             .then(res => res.json())
             .then(data => setProducts(data))
     })
@@ -12,7 +12,7 @@ const ManageProduct = () => {
         const process = window.confirm("Are you sure you want to delete this product")
         if (process) {
             console.log(id);
-            fetch(`http://localhost:5000/bikes/${id}`, {
+            fetch(`https://dry-fortress-62945.herokuapp.com/bikes/${id}`, {
                 method: 'DELETE',
 
             })

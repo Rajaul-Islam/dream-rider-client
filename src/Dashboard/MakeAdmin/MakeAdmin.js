@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const handleAdminSubmit = e => {
         const user = { email }
         console.log(user);
-        fetch('http://localhost:5000/uniqueUser/admin', {
+        fetch('https://dry-fortress-62945.herokuapp.com/uniqueUser/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -21,12 +21,12 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount){
-              
-                     setSuccess(true);
+                if (data.modifiedCount) {
+
+                    setSuccess(true);
                 }
-                
-                   
+
+
             })
 
         e.preventDefault()

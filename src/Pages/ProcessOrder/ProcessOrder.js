@@ -8,12 +8,13 @@ const ProcessOrder = () => {
     const { user } = useAuth();
     const [product, setProduct] = useState();
     console.log(product)
-    const url = `http://localhost:5000/bikes/${id}`
     useEffect(() => {
+        const url = `https://dry-fortress-62945.herokuapp.com/bikes/${id}`
+
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [])
+    }, [id])
     const nameRef = useRef();
 
     const handelSubmit = e => {
@@ -22,7 +23,7 @@ const ProcessOrder = () => {
         console.log(newUser);
 
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://dry-fortress-62945.herokuapp.com/users', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +33,7 @@ const ProcessOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-             console.log(data._id)
+                console.log(data._id)
                 if (data.insertedId) {
                     alert('Order Placed SuccessFully')
                     // const allUsers=

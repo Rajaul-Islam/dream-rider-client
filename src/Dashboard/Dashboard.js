@@ -1,5 +1,5 @@
 
-import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 
 import {
 
@@ -18,7 +18,8 @@ import ManageProduct from './ManageProduct/ManageProduct';
 import MyOrder from './MyOrder/MyOrder';
 import Pay from './Pay/Pay';
 import Review from './Reviwe/Review';
-
+import './Dashboard.css'
+import NotFound from '../Pages/NotFound/NotFound';
 
 const Dashboard = () => {
     const { admin, logout } = useAuth()
@@ -29,19 +30,21 @@ const Dashboard = () => {
     return (
 
         <div>
-            <Navbar bg="light" expand={false}>
+            <Navbar  bg="primary" expand={false}>
                 <Container fluid>
-                    <Navbar.Brand href="#">Dashboard</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                    <Navbar.Brand className='text-white' href="#">Dashboard</Navbar.Brand>
+                    <Navbar.Toggle  aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
                         aria-labelledby="offcanvasNavbarLabel"
                         placement="start"
                     >
-                        <Offcanvas.Header closeButton>
+                        <Offcanvas.Header className='bg-primary text-white' closeButton>
                             <Offcanvas.Title id="offcanvasNavbarLabel">Dashboard</Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body>
+                        <Offcanvas.Body
+                        className='bg-dark'
+                        >
 
 
 
@@ -50,12 +53,12 @@ const Dashboard = () => {
 
 
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link as={Link} to='/home'>Home</Nav.Link>
+                                <Nav.Link className='text-white' as={Link} to='/home'>Home</Nav.Link>
                                 <Nav.Link as={Link} to={`${url}`}>Dashboard</Nav.Link>
                                 {
                                     admin ? <>
 
-                                        <Nav.Link as={Link} to={`${url}/manageOrder`}>Manage All Order</Nav.Link>
+                                        <Nav.Link  as={Link}  to={`${url}/manageOrder`}>Manage All Order</Nav.Link>
                                         <Nav.Link as={Link} to={`${url}/addProduct`}>Add A Product</Nav.Link>
                                         <Nav.Link as={Link} to={`${url}/makeAdmin`}>Make Admin</Nav.Link>
                                         <Nav.Link as={Link} to={`${url}/manageProduct`}>Manage Product</Nav.Link>
@@ -114,7 +117,7 @@ const Dashboard = () => {
                 <Route path={`${path}/manageProduct`}>
                     <ManageProduct></ManageProduct>
                 </Route>
-
+               
             </Switch>
         </div>
 

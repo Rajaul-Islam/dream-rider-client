@@ -6,7 +6,7 @@ const ManageAllOrder = () => {
     const { user } = useAuth()
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://dry-fortress-62945.herokuapp.com/users')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [user.email])
@@ -16,7 +16,7 @@ const ManageAllOrder = () => {
         const process = window.confirm("Are you sure you want to cancel this order")
         if (process) {
 
-            const url = `http://localhost:5000/orders/${id}`
+            const url = `https://dry-fortress-62945.herokuapp.com/orders/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -37,7 +37,7 @@ const ManageAllOrder = () => {
     const changeStatus = id => {
 
 
-        const url = `http://localhost:5000/users/${id}`
+        const url = `https://dry-fortress-62945.herokuapp.com/users/${id}`
         fetch(url, {
             method: 'PUT'
 

@@ -8,7 +8,7 @@ const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 const useFirebase = () => {
     const [user, setUser] = useState({});
-    const [error, setError] = useState({});
+    const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true)
     const [admin, setAdmin] = useState(false);
 
@@ -64,7 +64,11 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-
+    useEffect(() => {
+        setTimeout(() => {
+            setError("");
+        }, 5000);
+    }, [error]);
 
     //google signIn
     const signInWithGoogle = (location, history) => {
@@ -110,7 +114,7 @@ const useFirebase = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/uniqueUser/${user.email}`)
+        fetch(`https://dry-fortress-62945.herokuapp.com/uniqueUser/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -134,7 +138,7 @@ const useFirebase = () => {
 
         const user = { email, displayName }
 
-        fetch('http://localhost:5000/uniqueUser', {
+        fetch('https://dry-fortress-62945.herokuapp.com/uniqueUser', {
             method: method,
             headers: {
                 'content-type': 'application/json'

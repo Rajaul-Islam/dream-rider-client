@@ -6,7 +6,7 @@ const MyOrder = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useAuth()
     useEffect(() => {
-        const url = `http://localhost:5000/orders?email=${user.email}`
+        const url = `https://dry-fortress-62945.herokuapp.com/orders?email=${user.email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data))
@@ -16,7 +16,7 @@ const MyOrder = () => {
         const process = window.confirm("Are you sure you want to cancel this order")
         if (process) {
 
-            const uri = `http://localhost:5000/orders/${id}`
+            const uri = `https://dry-fortress-62945.herokuapp.com/orders/${id}`
             fetch(uri, {
                 method: 'DELETE'
             })
